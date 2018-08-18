@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HMSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HMSModelStoreContainer">
+          <EntitySet Name="Customer_Subscription_Master" EntityType="HMSModel.Store.Customer_Subscription_Master" store:Type="Tables" store:Schema="dbo" store:Name="Customer_Subscription_Master">
+            <DefiningQuery>SELECT 
+      [Customer_Subscription_Master].[Gym_ID] AS [Gym_ID], 
+      [Customer_Subscription_Master].[Gym_Name] AS [Gym_Name], 
+      [Customer_Subscription_Master].[Plan_Amount] AS [Plan_Amount], 
+      [Customer_Subscription_Master].[From_Date] AS [From_Date], 
+      [Customer_Subscription_Master].[To_Date] AS [To_Date], 
+      [Customer_Subscription_Master].[Active_Flag] AS [Active_Flag], 
+      [Customer_Subscription_Master].[Total_Month] AS [Total_Month], 
+      [Customer_Subscription_Master].[Jan] AS [Jan], 
+      [Customer_Subscription_Master].[Feb] AS [Feb], 
+      [Customer_Subscription_Master].[Mar] AS [Mar], 
+      [Customer_Subscription_Master].[Apr] AS [Apr], 
+      [Customer_Subscription_Master].[May] AS [May], 
+      [Customer_Subscription_Master].[Jun] AS [Jun], 
+      [Customer_Subscription_Master].[jul] AS [jul], 
+      [Customer_Subscription_Master].[Aug] AS [Aug], 
+      [Customer_Subscription_Master].[Sep] AS [Sep], 
+      [Customer_Subscription_Master].[Oct] AS [Oct], 
+      [Customer_Subscription_Master].[Nov] AS [Nov], 
+      [Customer_Subscription_Master].[Dec] AS [Dec]
+      FROM [dbo].[Customer_Subscription_Master] AS [Customer_Subscription_Master]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Gym_Master" EntityType="HMSModel.Store.Gym_Master" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="S_Admin_Master" EntityType="HMSModel.Store.S_Admin_Master" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Student_Master" EntityType="HMSModel.Store.Student_Master" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Customer_Subscription_Master_Gym_Master" Association="HMSModel.Store.FK_Customer_Subscription_Master_Gym_Master">
+            <End Role="Gym_Master" EntitySet="Gym_Master" />
+            <End Role="Customer_Subscription_Master" EntitySet="Customer_Subscription_Master" />
+          </AssociationSet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'HMS.dbo.Customer_Subscription_Master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Customer_Subscription_Master">
+          <Key>
+            <PropertyRef Name="Gym_ID" />
+            <PropertyRef Name="Plan_Amount" />
+          </Key>
+          <Property Name="Gym_ID" Type="int" Nullable="false" />
+          <Property Name="Gym_Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Plan_Amount" Type="int" Nullable="false" />
+          <Property Name="From_Date" Type="datetime" />
+          <Property Name="To_Date" Type="datetime" />
+          <Property Name="Active_Flag" Type="bit" />
+          <Property Name="Total_Month" Type="int" />
+          <Property Name="Jan" Type="bit" />
+          <Property Name="Feb" Type="bit" />
+          <Property Name="Mar" Type="bit" />
+          <Property Name="Apr" Type="bit" />
+          <Property Name="May" Type="bit" />
+          <Property Name="Jun" Type="bit" />
+          <Property Name="jul" Type="bit" />
+          <Property Name="Aug" Type="bit" />
+          <Property Name="Sep" Type="bit" />
+          <Property Name="Oct" Type="bit" />
+          <Property Name="Nov" Type="bit" />
+          <Property Name="Dec" Type="bit" />
+        </EntityType>
+        <EntityType Name="Gym_Master">
+          <Key>
+            <PropertyRef Name="Gym_ID" />
+          </Key>
+          <Property Name="Gym_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Gym_Name" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Owner_Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contact_No" Type="bigint" />
+          <Property Name="Adhaar_No" Type="bigint" Nullable="false" />
+          <Property Name="Pan_No" Type="nvarchar" MaxLength="20" />
+          <Property Name="Active_Flag" Type="bit" Nullable="false" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Role_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="Gym_Logo" Type="image" />
+        </EntityType>
+        <EntityType Name="S_Admin_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contact_No" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Student_Master">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="Height" Type="varchar" MaxLength="20" />
+          <Property Name="Weight" Type="varchar" MaxLength="20" />
+          <Property Name="Advanced_Fees" Type="int" />
+          <Property Name="Monthly_Fees" Type="int" />
+          <Property Name="From_Date" Type="datetime" />
+          <Property Name="To_Date" Type="datetime" />
+          <Property Name="Fees_Amount" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adhaar_No" Type="bigint" />
+          <Property Name="Mobile_No" Type="nvarchar" MaxLength="20" />
+          <Property Name="Active_Flag" Type="bit" />
+          <Property Name="Created_by" Type="nvarchar" MaxLength="20" />
+          <Property Name="Total_Month" Type="int" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <Association Name="FK_Customer_Subscription_Master_Gym_Master">
+          <End Role="Gym_Master" Type="HMSModel.Store.Gym_Master" Multiplicity="1" />
+          <End Role="Customer_Subscription_Master" Type="HMSModel.Store.Customer_Subscription_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gym_Master">
+              <PropertyRef Name="Gym_ID" />
+            </Principal>
+            <Dependent Role="Customer_Subscription_Master">
+              <PropertyRef Name="Gym_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HMSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HMSEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer_Subscription_Master" EntityType="HMSModel.Customer_Subscription_Master" />
+          <EntitySet Name="Gym_Master" EntityType="HMSModel.Gym_Master" />
+          <EntitySet Name="S_Admin_Master" EntityType="HMSModel.S_Admin_Master" />
+          <EntitySet Name="Student_Master" EntityType="HMSModel.Student_Master" />
+          <AssociationSet Name="FK_Customer_Subscription_Master_Gym_Master" Association="HMSModel.FK_Customer_Subscription_Master_Gym_Master">
+            <End Role="Gym_Master" EntitySet="Gym_Master" />
+            <End Role="Customer_Subscription_Master" EntitySet="Customer_Subscription_Master" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer_Subscription_Master">
+          <Key>
+            <PropertyRef Name="Gym_ID" />
+            <PropertyRef Name="Plan_Amount" />
+          </Key>
+          <Property Name="Gym_ID" Type="Int32" Nullable="false" />
+          <Property Name="Gym_Name" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Plan_Amount" Type="Int32" Nullable="false" />
+          <Property Name="From_Date" Type="DateTime" Precision="3" />
+          <Property Name="To_Date" Type="DateTime" Precision="3" />
+          <Property Name="Active_Flag" Type="Boolean" />
+          <Property Name="Total_Month" Type="Int32" />
+          <Property Name="Jan" Type="Boolean" />
+          <Property Name="Feb" Type="Boolean" />
+          <Property Name="Mar" Type="Boolean" />
+          <Property Name="Apr" Type="Boolean" />
+          <Property Name="May" Type="Boolean" />
+          <Property Name="Jun" Type="Boolean" />
+          <Property Name="jul" Type="Boolean" />
+          <Property Name="Aug" Type="Boolean" />
+          <Property Name="Sep" Type="Boolean" />
+          <Property Name="Oct" Type="Boolean" />
+          <Property Name="Nov" Type="Boolean" />
+          <Property Name="Dec" Type="Boolean" />
+          <NavigationProperty Name="Gym_Master" Relationship="HMSModel.FK_Customer_Subscription_Master_Gym_Master" FromRole="Customer_Subscription_Master" ToRole="Gym_Master" />
+        </EntityType>
+        <EntityType Name="Gym_Master">
+          <Key>
+            <PropertyRef Name="Gym_ID" />
+          </Key>
+          <Property Name="Gym_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Gym_Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Owner_Name" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Contact_No" Type="Int64" />
+          <Property Name="Adhaar_No" Type="Int64" Nullable="false" />
+          <Property Name="Pan_No" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Active_Flag" Type="Boolean" Nullable="false" />
+          <Property Name="Created_Date" Type="DateTime" Precision="3" />
+          <Property Name="Role_ID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Gym_Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Customer_Subscription_Master" Relationship="HMSModel.FK_Customer_Subscription_Master_Gym_Master" FromRole="Gym_Master" ToRole="Customer_Subscription_Master" />
+        </EntityType>
+        <EntityType Name="S_Admin_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Contact_No" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Student_Master">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Height" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Weight" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Advanced_Fees" Type="Int32" />
+          <Property Name="Monthly_Fees" Type="Int32" />
+          <Property Name="From_Date" Type="DateTime" Precision="3" />
+          <Property Name="To_Date" Type="DateTime" Precision="3" />
+          <Property Name="Fees_Amount" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Adhaar_No" Type="Int64" />
+          <Property Name="Mobile_No" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Active_Flag" Type="Boolean" />
+          <Property Name="Created_by" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Total_Month" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Customer_Subscription_Master_Gym_Master">
+          <End Role="Gym_Master" Type="HMSModel.Gym_Master" Multiplicity="1" />
+          <End Role="Customer_Subscription_Master" Type="HMSModel.Customer_Subscription_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gym_Master">
+              <PropertyRef Name="Gym_ID" />
+            </Principal>
+            <Dependent Role="Customer_Subscription_Master">
+              <PropertyRef Name="Gym_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HMSModelStoreContainer" CdmEntityContainer="HMSEntities">
+          <EntitySetMapping Name="Customer_Subscription_Master">
+            <EntityTypeMapping TypeName="HMSModel.Customer_Subscription_Master">
+              <MappingFragment StoreEntitySet="Customer_Subscription_Master">
+                <ScalarProperty Name="Gym_ID" ColumnName="Gym_ID" />
+                <ScalarProperty Name="Gym_Name" ColumnName="Gym_Name" />
+                <ScalarProperty Name="Plan_Amount" ColumnName="Plan_Amount" />
+                <ScalarProperty Name="From_Date" ColumnName="From_Date" />
+                <ScalarProperty Name="To_Date" ColumnName="To_Date" />
+                <ScalarProperty Name="Active_Flag" ColumnName="Active_Flag" />
+                <ScalarProperty Name="Total_Month" ColumnName="Total_Month" />
+                <ScalarProperty Name="Jan" ColumnName="Jan" />
+                <ScalarProperty Name="Feb" ColumnName="Feb" />
+                <ScalarProperty Name="Mar" ColumnName="Mar" />
+                <ScalarProperty Name="Apr" ColumnName="Apr" />
+                <ScalarProperty Name="May" ColumnName="May" />
+                <ScalarProperty Name="Jun" ColumnName="Jun" />
+                <ScalarProperty Name="jul" ColumnName="jul" />
+                <ScalarProperty Name="Aug" ColumnName="Aug" />
+                <ScalarProperty Name="Sep" ColumnName="Sep" />
+                <ScalarProperty Name="Oct" ColumnName="Oct" />
+                <ScalarProperty Name="Nov" ColumnName="Nov" />
+                <ScalarProperty Name="Dec" ColumnName="Dec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gym_Master">
+            <EntityTypeMapping TypeName="HMSModel.Gym_Master">
+              <MappingFragment StoreEntitySet="Gym_Master">
+                <ScalarProperty Name="Gym_ID" ColumnName="Gym_ID" />
+                <ScalarProperty Name="Gym_Name" ColumnName="Gym_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+                <ScalarProperty Name="Adhaar_No" ColumnName="Adhaar_No" />
+                <ScalarProperty Name="Pan_No" ColumnName="Pan_No" />
+                <ScalarProperty Name="Active_Flag" ColumnName="Active_Flag" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Gym_Logo" ColumnName="Gym_Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Admin_Master">
+            <EntityTypeMapping TypeName="HMSModel.S_Admin_Master">
+              <MappingFragment StoreEntitySet="S_Admin_Master">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Master">
+            <EntityTypeMapping TypeName="HMSModel.Student_Master">
+              <MappingFragment StoreEntitySet="Student_Master">
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Advanced_Fees" ColumnName="Advanced_Fees" />
+                <ScalarProperty Name="Monthly_Fees" ColumnName="Monthly_Fees" />
+                <ScalarProperty Name="From_Date" ColumnName="From_Date" />
+                <ScalarProperty Name="To_Date" ColumnName="To_Date" />
+                <ScalarProperty Name="Fees_Amount" ColumnName="Fees_Amount" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Adhaar_No" ColumnName="Adhaar_No" />
+                <ScalarProperty Name="Mobile_No" ColumnName="Mobile_No" />
+                <ScalarProperty Name="Active_Flag" ColumnName="Active_Flag" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Total_Month" ColumnName="Total_Month" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
